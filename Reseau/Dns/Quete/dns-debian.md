@@ -4,7 +4,7 @@
 
 ## La zone de recherche se nomme wilders.lan:
 
-![config zone](0005.png)
+![config zone](01.png)
 
 ## La résolution d'adresse IP est fonctionnelle (champs A):
 
@@ -16,4 +16,4 @@
 
 ## Les tests proposés permettent effectivement de valider les points ci-dessus:
 
-![nslookup](nslookupwindns.png)
+![nslookup](0005.png)
