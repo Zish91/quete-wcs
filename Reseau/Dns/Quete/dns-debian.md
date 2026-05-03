@@ -4,7 +4,7 @@
 
 ## La zone de recherche se nomme wilders.lan:
 
-![config zone](01.png)
+![config zone](0005.png)
 
 ## La résolution d'adresse IP est fonctionnelle (champs A):
 
