@@ -1,8 +1,9 @@
 ```
 ::1 - - [30/May/2026:23:49:44 +0200] "GET /xavierdelapegrecorse HTTP/1.1" 404 432 "-" "curl/8.5.0"
 ::1 - - [01/Jun/2026:22:20:35 +0200] "GET /bricehortefeu HTTP/1.1" 404 432 "-" "curl/8.5.0"
-::1 - - [01/Jun/2026:22:20:35 +0200] "GET /lelaboratoiredeminjhou HTTP/1.1" 404 432 "-" "curl/8.5.0"
+::1 - - [01/Jun/2026:22:20:35 +0200] "GET /minjhaposeplusdequestionwtf HTTP/1.1" 404 432 "-" "curl/8.5.0"
 ::1 - - [01/Jun/2026:22:20:35 +0200] "GET /cedricarthurmorgan HTTP/1.1" 404 432 "-" "curl/8.5.0"
+::1 - - [01/Jun/2026:22:20:35 +0200] "GET /gregalccolique HTTP/1.1" 404 432 "-" "curl/8.5.0"
 
 ```
 
