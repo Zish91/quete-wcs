@@ -35,8 +35,6 @@ Transfert sur la VM 306 via SCP depuis la VM 310 (PowerShell) :
 scp $env:USERPROFILE\Downloads\veeam-release-deb_13.0.2_amd64.deb root@172.16.6.34:/root/
 ```
 
-![Transfert SCP du paquet Veeam vers VM 306](./screenshots/envoiedupaquetveeamsur306.png)
-
 Installation du paquet release + rafraîchissement du cache apt :
 
 ```bash
@@ -63,7 +61,7 @@ sudo apt install blksnap veeam
 
 Une seule commande | apt tire toutes les dépendances automatiquement (dkms, gcc, make, linux-headers, veeam-libs). DKMS compile les modules `veeamblksnap.ko` et `bdevfilter.ko` pour le kernel actif.
 
-![Installation de l'agent Veeam et compilation DKMS](./screenshots/installationdelagentsur306.png)
+![Installation de l'agent Veeam et compilation DKMS](./installationdelagentsur306.png)
 
 ### Étape 3 | Vérification post-install
 
@@ -84,7 +82,7 @@ sudo veeam
 | Step 2 | Recovery ISO | skippé (`Tab` → `Next`) | pas critique sur VM Proxmox |
 | Step 3 | License | Free Edition | `Finish` sans renseigner de licence |
 
-![Veeam Agent for Linux | TUI prête après l'initial setup](./screenshots/agentlinuxvm306.png)
+![Veeam Agent for Linux | TUI prête après l'initial setup](./agentlinuxvm306.png)
 
 ---
 
@@ -108,7 +106,7 @@ EXIT;
 | `@'localhost'` | Connexion locale uniquement (principe de moindre privilège) |
 | `FLUSH PRIVILEGES` | Applique immédiatement les changements |
 
-![Création du user MariaDB dédié backup](./screenshots/ajoutuserveeamGLPI.png)
+![Création du user MariaDB dédié backup](./ajoutuserveeamGLPI.png)
 
 ---
 
@@ -140,11 +138,7 @@ Résultat : backup **application-consistent** (pas juste crash-consistent).
 
 Option choisie : **Require successful processing** → si le freeze MariaDB échoue, le backup est annulé (pas de backup corrompu silencieux).
 
-![Application-aware processing activé](./screenshots/prefreezeMariaDB.png)
-
-### Summary du job
-
-![Summary du job AgentGLPI](./screenshots/summaryveeamGLPI.png)
+![Application-aware processing activé](./prefreezeMariaDB.png)
 
 ---
 
@@ -161,13 +155,13 @@ Option choisie : **Require successful processing** → si le freeze MariaDB éch
 | Bottleneck | Réseau |
 | Erreurs / Warnings | 0 / 0 |
 
-![Premier backup GLPI | Success](./screenshots/glpiFirstJOBOK.png)
+![Premier backup GLPI | Success](./glpiFirstJOBOK.png)
 
 ### Vérification côté repository (VM 311)
 
 Fichier `.vbk` (full backup) présent dans `E:\Backups\AgentGLPI\` sur la VM 311.
 
-![Dossier AgentGLPI sur le repository VM 311](./screenshots/vm311GLPIOK.png)
+![Dossier AgentGLPI sur le repository VM 311](./vm311GLPIOK.png)
 
 ### Backups suivants
 
