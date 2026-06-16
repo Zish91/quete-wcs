@@ -183,3 +183,4 @@ Les prochains backups seront **incrémentiels** (fichiers `.vib`) : uniquement l
 | Initial Setup | https://helpcenter.veeam.com/docs/agentforlinux/userguide/val_first_steps.html?ver=13 |
 | Recovery ISO (skippé) | https://helpcenter.veeam.com/docs/agentforlinux/userguide/val_first_steps_iso.html?ver=13 |
 | MySQL Processing | https://helpcenter.veeam.com/docs/agentforlinux/userguide/backup_job_mysql.html?ver=13 |
+|Base de données MARIADB | https://fr-wiki.ikoula.com/fr/Sauvegarder_mes_bases_de_donn%C3%A9es_MariaDB_sous_Veeam |
