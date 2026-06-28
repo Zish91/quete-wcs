@@ -66,9 +66,6 @@ II. Script à coller dans la console pour démarrer (sur la page /quests avec to
 III. Script Tampermonkey
                            ###
 
-Tampermonkey :
-
-
 // ==UserScript==
 // @name         Odyssey Scraper
 // @namespace    odyssey-scraper
