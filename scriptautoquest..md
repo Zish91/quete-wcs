@@ -1,6 +1,12 @@
-###
-I.Script de collecte des ID 
-                             ###
+# Script d'automatisation Odyssey
+
+![Automatisation Odyssey](ressources/automatisationquest.png)
+
+## I. Script de collecte des ID
+
+À lancer sur la page `/quests` avec tous les filtres de catégorie cochés.
+
+```javascript
 (async function() {
   const seen = new Set();
 
@@ -40,13 +46,13 @@ I.Script de collecte des ID
   console.log(`✅ Total final : ${links.length} IDs uniques`);
   console.log(JSON.stringify(links));
 })();
+```
 
+## II. Script de démarrage
 
-###
-II. Script à coller dans la console pour démarrer (sur la page /quests avec tous les filtres cochés,     
-  après avoir récupéré la liste des IDs via le script de collecte des ID) :
-                                                                                              ###
+À coller dans la console pour démarrer (sur la page `/quests` avec tous les filtres cochés, après avoir récupéré la liste des IDs via le script de collecte ci-dessus).
 
+```javascript
 (function() {
   const ids = ["1949","1950","1944","3966","1945","296","517","2503","2924","3092","3960","3976","3977","3033","3035","3590","3020","3957","3958","3959","3075","3077","2365","2799","2935","2850","2777","2860","3036","3054","3903","2883","2390","2852","3066","2874","3573","2372","1676","2359","2983","1951","2791","2794","1453","1445","1454","1444","2291","3912","3021","2277","2416","2335","3918","2338","2080","703","2998","2063","2426","2133","1309","2138","1313","1312","1311","2129","1410","2790","2082","1390","2337","2367","3936","2200","3129","2294","2471","2464","2270","3504","2538","3105","1545","2246","629","3084","2006","2039","2030","2781","2768","2409","2410","3041","3963","2878","3962","2848","3581","3582","3583","3135","2861","2866","2873","2103","3964","2356","2358","2316","2041","3961","3978","2934","2350","3042","3823","1977","2274","2114","1315","1316","701"];
 
@@ -60,12 +66,11 @@ II. Script à coller dans la console pour démarrer (sur la page /quests avec to
   console.log(`🚀 Démarrage ! ${ids.length} quêtes en file.`);
   window.location.href = '/quests/' + ids[0];
 })();
+```
 
+## III. Script Tampermonkey
 
-###
-III. Script Tampermonkey
-                           ###
-
+```javascript
 // ==UserScript==
 // @name         Odyssey Scraper
 // @namespace    odyssey-scraper
@@ -218,3 +223,4 @@ III. Script Tampermonkey
         setTimeout(run, 5000);
     }
 })();
+```
