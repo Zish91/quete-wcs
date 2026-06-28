@@ -1,6 +1,6 @@
 
 
-![Description de l'image](ressource/automatisationquest.png)
+![Description de l'image](ressources/automatisationquest.png)
 
 ###
 I.Script de collecte des ID 
