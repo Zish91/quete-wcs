@@ -224,3 +224,46 @@
     }
 })();
 ```
+
+---
+---
+
+
+### Le problème de départ
+
+Odyssey est une **Single Page Application** (React + Material UI) — pas un site classique où chaque URL renvoie une page HTML complète et indépendante. Conséquence directe : `web_fetch` ne voit qu'une coquille vide (`<div id="root"></div>`), parce que tout le contenu est généré **après coup** par du JavaScript, côté navigateur, une fois la page chargée et que tu es authentifié. Aucun outil externe ne peut "voir" ce contenu sans passer par ton navigateur connecté.
+
+### Pourquoi la console DevTools
+
+Comme le contenu n'existe que dans **ton** navigateur avec **ta** session active, la seule façon d'y accéder par script, c'était d'exécuter du code directement **dans** cette session — via la console JavaScript de Chrome (F12 → Console). C'est un terminal qui exécute du JS avec un accès complet au DOM (la structure HTML) de la page actuellement affichée, comme si c'était toi qui cliquais, mais en code.
+
+### Étape 1 — Comprendre la structure du DOM
+
+Avant d'écrire le moindre script, on a dû **inspecter** (clic droit → Inspecter) pour voir comment Odyssey organise son HTML : quelles classes CSS contiennent le contenu d'une quête, où se trouve le lien vers chaque quête, etc. C'est indispensable parce que sans connaître les bonnes "poignées" (sélecteurs CSS comme `div.css-1fpw8tv`), un script ne sait pas où chercher.
+
+### Étape 2 — Extraire et convertir le HTML en Markdown
+
+Le script `htmlToMd()` parcourt récursivement chaque balise HTML (`<h1>`, `<p>`, `<table>`, etc.) et la traduit en syntaxe Markdown équivalente (`# titre`, texte simple, `| tableau |`). C'est une petite fonction de **conversion de format** — du HTML structuré vers du texte structuré plus simple, exploitable dans Obsidian.
+
+### Étape 3 — Collecter les 125 identifiants de quêtes
+
+Pour savoir quelles pages visiter, on a dû lister tous les liens `/quests/{id}` présents dans le DOM. Complication : la pagination (5 pages de résultats) signifiait qu'il fallait **simuler des clics** sur les boutons "page suivante" via du JavaScript (`dispatchEvent`), puis attendre le temps que React affiche le nouveau contenu avant de continuer.
+
+### Étape 4 — Le vrai défi technique : naviguer sans perdre l'état
+
+Changer l'URL recharge entièrement la page, ce qui **tue** n'importe quel script en cours d'exécution dans la console — toutes les variables sont perdues à chaque rechargement. La solution a été d'utiliser le **`localStorage`** du navigateur : une petite base de données clé-valeur qui **survit** aux rechargements de page. On y stocke où on est rendu (`index`), la liste complète des IDs à visiter, et les résultats déjà collectés.
+
+### Étape 5 — Tampermonkey, le chaînon manquant
+
+Le `localStorage` permet de garder l'état, mais il fallait aussi qu'un script se **relance automatiquement** après chaque rechargement de page — chose qu'une simple console ne fait pas (il faut recoller le code à la main). Tampermonkey est une extension qui **réinjecte automatiquement** un script chaque fois qu'une page correspondant à un certain motif d'URL (`@match`) se charge. C'est ce qui a permis la boucle complète : charger une quête → attendre 5 secondes → lire l'état dans `localStorage` → extraire le contenu → l'ajouter aux résultats → incrémenter l'index → naviguer vers la quête suivante → recommencer.
+
+### Pourquoi ça n'a pas marché du premier coup
+
+Plusieurs couches de friction classiques en automatisation web :
+
+- Chrome bloque le collage de scripts par sécurité (`allow pasting`)
+- Chrome bloque aussi l'accès au presse-papier riche si l'onglet n'a pas le focus (`clipboard.write()`)
+- Chrome a une option séparée, désactivée par défaut, pour autoriser l'exécution de userscripts tiers
+- Les clics simulés en JS pur (`.click()`) ne déclenchent pas toujours les gestionnaires d'événements React — il a fallu simuler la séquence complète `mousedown` → `mouseup` → `click`
+
+
