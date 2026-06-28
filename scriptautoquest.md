@@ -225,6 +225,18 @@
 })();
 ```
 
+## Script d'arrêt : 
+
+```
+const state = JSON.parse(localStorage.getItem('odyssey_scrape_state'));
+state.active = false;
+localStorage.setItem('odyssey_scrape_state', JSON.stringify(state));
+console.log('🛑 Scraping arrêté.');
+```
+
+
+
+
 ---
 ---
 
