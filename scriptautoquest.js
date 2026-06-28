@@ -1,6 +1,5 @@
 
-
-// 📷 Capture d'écran : https://raw.githubusercontent.com/Zish91/quete-wcs/main/ressources/automatisationquest.png
+📷 Capture d'écran : https://raw.githubusercontent.com/Zish91/quete-wcs/main/ressources/automatisationquest.png
 
 ###
 I.Script de collecte des ID 
